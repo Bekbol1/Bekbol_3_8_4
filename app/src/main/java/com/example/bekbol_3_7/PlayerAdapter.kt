@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.bekbol_3_7.databinding.ItemPlayersBinding
 
 class PlayerAdapter(
-    val list: ArrayList<Player>,val onClick: (position:Int)->Unit
+    val list: ArrayList<Player>,val onClick: (player:Player)->Unit
 ) : Adapter<PlayerAdapter.ViewHolder>(){
 
 
@@ -31,7 +31,7 @@ class PlayerAdapter(
             binding.tvTeam.text = item.team
             item.image?.let { binding.imgPlayer.loadImage(it)}
 
-            itemView.setOnClickListener { onClick (adapterPosition) }
+            itemView.setOnClickListener { onClick.invoke(item) }
         }
 
     }

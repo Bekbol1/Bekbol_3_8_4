@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.bekbol_3_7.databinding.FragmentPlayersBinding
 
 class Players : Fragment() {
@@ -33,7 +34,18 @@ class Players : Fragment() {
         Player("Jayson Tatum",
         "Boston Celtics",
         "https://gray-wagm-prod.cdn.arcpublishing.com/resizer/bObvXNidYWa-qGaSfZx2A1cXhGM=/1200x1800/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/5GWSVGB6SRPVDF6BQBS346WEBM.jpg"
-        )
+        ),
+        Player("Shaquille O'Neal",
+        "Lakers",
+        "https://cdn.bleacherreport.net/images_root/slides/photos/000/984/343/1483215_original.jpg?1307002618"
+        ),
+        Player("Michael Jordan",
+        "Bulls",
+        "https://www.sportvokrug.ru/f/1/statyi_o_sporte/michael-jordan/jordan2.png"
+        ),
+        Player("Karl Malone",
+        "Utah Jazz",
+        "https://upload.wikimedia.org/wikipedia/commons/3/3e/Lipofsky-Karl-Malone-32727.jpg")
     )
 
     override fun onCreateView(
@@ -47,11 +59,13 @@ class Players : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.rvPlayers.layoutManager = GridLayoutManager(requireContext(),2)
         val adapter = PlayerAdapter(playerList,this::onClick)
         binding.rvPlayers.adapter = adapter
+
     }
 
-    private fun onClick(position:Int){
-        findNavController().navigate(R.id.playersInfo, bundleOf("Bekbol" to playerList[position]) )
+    private fun onClick(player: Player){
+        findNavController().navigate(PlayersDirections.actionPlayersToPlayersInfo(player) )
     }
 }

@@ -10,11 +10,17 @@
         android:name="com.example.bekbol_3_7.Players"
         android:label="fragment_players"
         tools:layout="@layout/fragment_players" >
+        <action
+            android:id="@+id/action_players_to_playersInfo"
+            app:destination="@id/playersInfo" />
     </fragment>
     <fragment
         android:id="@+id/playersInfo"
         android:name="com.example.bekbol_3_7.PlayersInfo"
         android:label="fragment_players_info"
         tools:layout="@layout/fragment_players_info">
+        <argument
+            android:name="player"
+            app:argType="com.example.bekbol_3_7.Player"/>
     </fragment>
 </navigation>
